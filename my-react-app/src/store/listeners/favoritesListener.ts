@@ -1,13 +1,12 @@
 import { createListenerMiddleware } from '@reduxjs/toolkit';
-import { addFavorite, removeFavorite } from './favoritesSlice';
-import { RootState } from './index';
-import { getFavoritesKey } from './favoritesSlice';
+import { addFavorite, removeFavorite, clearFavorites, getFavoritesKey } from '../slices/favoritesSlice';
+import { RootState } from '../index';
 
 export const favoritesListener = createListenerMiddleware();
 
 favoritesListener.startListening({
   matcher: (action) =>
-    addFavorite.match(action) || removeFavorite.match(action),
+    addFavorite.match(action) || removeFavorite.match(action) || clearFavorites.match(action),
 
   effect: (_, listenerApi) => {
     const state = listenerApi.getState() as RootState;

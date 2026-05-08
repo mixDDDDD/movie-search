@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import Input from '../Input/Input.js';
-import Button from '../Button/Button.js';
+import Input from '../Input/Input';
+import Button from '../Button/Button';
+import searchIcon from '/search.svg';
 import styles from './Search.module.css';
 
 type SearchProps = {
   onSearch: (query: string) => void
+  initialValue?: string
 }
 
-function Search({ onSearch }: SearchProps) {
-  const [value, setValue] = useState('');
+function Search({ onSearch, initialValue = '' }: SearchProps) {
+  const [value, setValue] = useState(initialValue);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -21,10 +23,9 @@ function Search({ onSearch }: SearchProps) {
     }
 
     onSearch(trimmed);
-    setValue('');
   };
 
-  const handleKeyDown = (event: { key: string; }) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleSearch();
     }
@@ -34,12 +35,12 @@ function Search({ onSearch }: SearchProps) {
     <div className={styles.search}>
       <Input
         placeholder="Введите название"
-        icon="🔍"
+        icon={<img src={searchIcon} alt="Поиск" width="24" height="24" />}
         value={value}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <Button onClick={handleSearch}>Искать</Button>
+      <Button className={styles.search__button} onClick={handleSearch}>Искать</Button>
     </div>
   );
 }

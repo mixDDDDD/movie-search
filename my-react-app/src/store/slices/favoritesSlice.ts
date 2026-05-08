@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { MovieModel } from '../types/movie';
+import { MovieModel } from '../../types/models';
 
 type FavoritesState = {
   items: MovieModel[];
@@ -24,7 +24,7 @@ const favoritesSlice = createSlice({
     },
     removeFavorite(state, action: PayloadAction<string | number>) {
       state.items = state.items.filter(
-        (m) => m.id !== action.payload
+        (m) => m.id !== String(action.payload)
       );
     },
     clearFavorites(state) {

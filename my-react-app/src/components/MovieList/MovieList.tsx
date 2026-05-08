@@ -1,5 +1,5 @@
 import MovieCard from '../MovieCard/MovieCard';
-import { MovieModel } from '../../types/movie';
+import { MovieModel } from '../../types/models';
 import styles from './MovieList.module.css';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 
 function MovieList({ movies }: Props) {
   return (
-    <section className={styles.moviesList}>
+    <section className={styles['movies-list']}>
       {movies.map((movie) => (
         <MovieCard
           key={movie.id}

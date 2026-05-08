@@ -1,4 +1,10 @@
 .search {
-    display: flex;
-    gap: 8px;
+  display: flex;
+  width: 518px;
+  gap: 15px;
+}
+
+.search__button {
+  width: 119px;
+  flex-shrink: 0;
 }

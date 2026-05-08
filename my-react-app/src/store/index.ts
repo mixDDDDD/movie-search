@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import favoritesReducer from './favoritesSlice';
-import userReducer from './userSlice';
-import { favoritesListener } from './favoritesListener';
+import favoritesReducer from './slices/favoritesSlice';
+import userReducer from './slices/userSlice';
+import { favoritesListener } from './listeners/favoritesListener';
 
 export const store = configureStore({
   reducer: {

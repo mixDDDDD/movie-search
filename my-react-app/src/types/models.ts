@@ -1,5 +1,6 @@
 export type MovieModel = {
-  id: number | string;
+  id: string;
   title: string;
   image: string;
+  year?: string;
 };

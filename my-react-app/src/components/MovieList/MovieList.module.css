@@ -1,13 +1,6 @@
 .movies-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    margin-top: 80px;
-}
-
-.movies-list__poster {
-    width: 100%;
-    display: block;
-    border-radius: 12px;
-    object-fit: cover;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 80px;
 }

@@ -8,7 +8,7 @@ type ButtonProps = {
 
 function Button({ children, onClick, className }: ButtonProps) {
   return (
-    <button className={`${styles.button} ${className}`} onClick={onClick}>
+    <button className={`${styles.button} ${className || ''}`} onClick={onClick}>
       {children}
     </button>
   );

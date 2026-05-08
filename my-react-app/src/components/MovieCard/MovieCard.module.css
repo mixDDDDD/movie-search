@@ -1,18 +1,78 @@
 .card {
-    position: relative;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.poster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  display: block;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.info {
+  padding: 12px 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.year {
+  font-size: 13px;
+  color: var(--color-text-muted);
 }
 
 .favoriteBtn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: transparent;
-    border: none;
-    font-size: 22px;
-    cursor: pointer;
-    opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--color-border);
+  font-size: 14px;
+  font-weight: 500;
+  color: #7b6ef6;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.favoriteBtn.active {
-    opacity: 1;
+.favoriteBtn:hover {
+  background: rgba(123, 110, 246, 0.08);
+}
+
+.favoriteBtn--active {
+  color: #37d8a7;
+}
+
+.favoriteBtn--active:hover {
+  background: rgba(55, 216, 167, 0.08);
 }

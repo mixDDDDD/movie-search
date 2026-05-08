@@ -1,7 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './MovieCard.module.css';
-import { MovieModel } from '../../types/movie';
+import { MovieModel } from '../../types/models';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { addFavorite, removeFavorite } from '../../store/favoritesSlice';
+import { addFavorite, removeFavorite } from '../../store/slices/favoritesSlice';
+import likeIcon from '/like.svg';
+import bookmarkIcon from '/bookmark.svg';
 
 type MovieCardProps = {
   movie: MovieModel;
@@ -9,6 +12,7 @@ type MovieCardProps = {
 
 function MovieCard({ movie }: MovieCardProps) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const favorites = useAppSelector(
     (state) => state.favorites.items
@@ -22,7 +26,13 @@ function MovieCard({ movie }: MovieCardProps) {
     (item) => item.id === movie.id
   );
 
-  const handleToggleFavorite = () => {
+  const handleCardClick = () => {
+    navigate(`/movie/${movie.id}`);
+  };
+
+  const handleToggleFavorite = (e: React.MouseEvent) => {
+    e.stopPropagation();
+
     if (!userName) return;
 
     if (isFavorite) {
@@ -33,18 +43,30 @@ function MovieCard({ movie }: MovieCardProps) {
   };
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={handleCardClick}>
       <img
         src={movie.image}
         alt={movie.title}
         className={styles.poster}
+        loading="lazy"
       />
+
+      <div className={styles.info}>
+        <h3 className={styles.title}>{movie.title}</h3>
+        {movie.year && <span className={styles.year}>{movie.year}</span>}
+      </div>
 
       <button
         onClick={handleToggleFavorite}
-        className={styles.favoriteBtn}
+        className={`${styles.favoriteBtn} ${isFavorite ? styles['favoriteBtn--active'] : ''}`}
       >
-        {isFavorite ? '★' : '☆'}
+        <img
+          src={isFavorite ? bookmarkIcon : likeIcon}
+          alt={isFavorite ? 'В избранном' : 'В избранное'}
+          width="24"
+          height="24"
+        />
+        <span>{isFavorite ? 'В избранном' : 'В избранное'}</span>
       </button>
     </div>
   );

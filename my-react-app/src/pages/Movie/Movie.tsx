@@ -1,69 +1,67 @@
 import { useLoaderData } from 'react-router-dom';
 import styles from './Movie.module.css';
 
-type MovieLoaderData = {
-  short: {
-    name: string;
-    image: string;
-    description: string;
-    genre: string[];
-    datePublished: string;
-    duration?: string;
-    aggregateRating?: {
-      ratingValue: number;
-    };
-  };
+type OMDBMovieData = {
+  Title: string;
+  Year: string;
+  Rated: string;
+  Released: string;
+  Runtime: string;
+  Genre: string;
+  Director: string;
+  Writer: string;
+  Actors: string;
+  Plot: string;
+  Language: string;
+  Country: string;
+  Awards: string;
+  Poster: string;
+  Ratings: Array<{ Source: string; Value: string }>;
+  imdbRating: string;
+  imdbVotes: string;
+  imdbID: string;
+  Type: string;
 };
 
-function formatDuration(duration?: string) {
-  if (!duration) return null;
-
-  const match = duration.match(/PT(\d+)M/);
-  if (!match) return null;
-
-  const minutes = Number(match[1]);
-  const hours = Math.floor(minutes / 60);
-  const mins = minutes % 60;
-
-  return `${hours} ч ${mins} мин`;
-}
-
-
 export default function Movie() {
-  const data = useLoaderData() as MovieLoaderData;
-  const movie = data.short;
+  const movie = useLoaderData() as OMDBMovieData;
 
   return (
     <section className={styles.page}>
       <div className={styles.header}>
         <img
-          src={movie.image}
-          alt={movie.name}
+          src={movie.Poster !== 'N/A' ? movie.Poster : ''}
+          alt={movie.Title}
           className={styles.poster}
         />
 
         <div className={styles.info}>
-          <h1 className={styles.title}>{movie.name}</h1>
+          <h1 className={styles.title}>{movie.Title}</h1>
 
           <p className={styles.meta}>
-            {movie.datePublished}
-            {movie.duration && ` · ${formatDuration(movie.duration)}`}
-            {' · '}
-            {movie.genre.join(', ')}
+            {movie.Year}
+            {movie.Runtime && ` · ${movie.Runtime}`}
+            {movie.Genre && ` · ${movie.Genre}`}
           </p>
 
-
-          {movie.aggregateRating && (
+          {movie.imdbRating && movie.imdbRating !== 'N/A' && (
             <p className={styles.rating}>
-              ⭐ {movie.aggregateRating.ratingValue}
+              ⭐ {movie.imdbRating}
             </p>
           )}
-        </div>
-      </div>
 
-      <div className={styles.description}>
-        <h2>Описание</h2>
-        <p>{movie.description}</p>
+          {movie.Plot && movie.Plot !== 'N/A' && (
+            <p className={styles.plot}>{movie.Plot}</p>
+          )}
+
+          {movie.Director && movie.Director !== 'N/A' && (
+            <p className={styles.detail}><strong>Режиссёр:</strong> {movie.Director}</p>
+          )}
+
+          {movie.Actors && movie.Actors !== 'N/A' && (
+            <p className={styles.detail}><strong>В ролях:</strong> {movie.Actors}</p>
+          )}
+        </div>
       </div>
     </section>
   );
