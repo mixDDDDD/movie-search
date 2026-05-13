@@ -3,6 +3,7 @@ import styles from './MovieCard.module.css';
 import { MovieModel } from '../../types/models';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addFavorite, removeFavorite } from '../../store/slices/favoritesSlice';
+import { addNotification } from '../../store/slices/notificationsSlice';
 import likeIcon from '/like.svg';
 import bookmarkIcon from '/bookmark.svg';
 
@@ -33,7 +34,10 @@ function MovieCard({ movie }: MovieCardProps) {
   const handleToggleFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
 
-    if (!userName) return;
+    if (!userName) {
+      dispatch(addNotification('Войдите в профиль, чтобы добавить фильм в избранное'));
+      return;
+    }
 
     if (isFavorite) {
       dispatch(removeFavorite(movie.id));

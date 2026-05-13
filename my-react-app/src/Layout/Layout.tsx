@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { logout } from '../store/slices/userSlice';
 import { setFavorites, clearFavorites, getFavoritesKey } from '../store/slices/favoritesSlice';
 import loginIcon from '/login.svg';
+import Toast from '../components/Toast/Toast';
 import styles from './Layout.module.css';
 
 type NavData = { isActive: boolean };
@@ -77,6 +78,8 @@ const Layout = () => {
           ) : null}
         </div>
       </header>
+
+      <Toast />
 
       <main className={styles['layout__content']}>
         {isLoading ? (

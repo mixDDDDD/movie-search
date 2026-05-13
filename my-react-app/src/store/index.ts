@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import favoritesReducer from './slices/favoritesSlice';
 import userReducer from './slices/userSlice';
+import notificationsReducer from './slices/notificationsSlice';
 import { favoritesListener } from './listeners/favoritesListener';
 
 export const store = configureStore({
   reducer: {
     favorites: favoritesReducer,
     user: userReducer,
+    notifications: notificationsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().prepend(favoritesListener.middleware),
