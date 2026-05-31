@@ -8,3 +8,25 @@
   width: 119px;
   flex-shrink: 0;
 }
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .search {
+    width: 100%;
+    max-width: 518px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .search {
+    width: 100%;
+    max-width: none;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .search__button {
+    width: 100%;
+  }
+}

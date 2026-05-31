@@ -1,8 +1,22 @@
 .title {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 64px;
-    line-height: 125%;
-    letter-spacing: -0.02em;
-    color: #ebeef5;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 125%;
+  letter-spacing: -0.02em;
+  color: #ebeef5;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 48px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
 }

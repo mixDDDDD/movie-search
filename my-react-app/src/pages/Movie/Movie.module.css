@@ -48,3 +48,40 @@
   font-size: 15px;
   line-height: 1.5;
 }
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .header {
+    gap: 24px;
+  }
+
+  .poster {
+    width: 240px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .page {
+    padding: 24px 0;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .poster {
+    width: 100%;
+    max-width: 300px;
+    align-self: center;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .rating {
+    font-size: 20px;
+  }
+}
