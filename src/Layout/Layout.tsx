@@ -73,7 +73,7 @@ const Layout = () => {
           ) : !isLoginPage ? (
             <NavLink to="/login" className={styles['layout__login-link']}>
               Войти
-              <img src={loginIcon} alt="" width="24" height="24" />
+              <img src={loginIcon} alt="" width="21" height="21" />
             </NavLink>
           ) : null}
         </div>
